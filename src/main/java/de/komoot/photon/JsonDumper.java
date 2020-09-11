@@ -1,10 +1,12 @@
 package de.komoot.photon;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+
+import org.elasticsearch.common.Strings;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * useful to create json files that can be used for fast re imports
@@ -25,7 +27,7 @@ public class JsonDumper implements Importer {
     public void add(PhotonDoc doc) {
         try {
             writer.println("{\"index\": {}}");
-            writer.println(Utils.convert(doc, this.languages).string());
+            writer.println(Strings.toString(Utils.convert(doc, this.languages)));
         } catch (IOException e) {
             log.error("error writing json file", e);
         }

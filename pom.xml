@@ -40,13 +40,17 @@
                     <groupId>commons-logging</groupId>
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-api</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency><!-- required by elasticsearch to avoid warning on startup,
             see https://github.com/elastic/elasticsearch/issues/13245 -->
             <groupId>org.elasticsearch</groupId>
             <artifactId>jna</artifactId>
-            <version>4.4.0</version>
+            <version>5.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -290,6 +294,7 @@
                             <goal>report</goal>
                         </goals>
                     </execution>
+                    
                 </executions>
             </plugin>
         </plugins>
@@ -312,9 +317,9 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 
-        <elasticsearch.version>5.5.0</elasticsearch.version>
+        <elasticsearch.version>7.9.1</elasticsearch.version>
         <slf4j.version>1.7.30</slf4j.version>
-        <log4j.version>2.8.2</log4j.version>
+        <log4j.version>2.13.3</log4j.version>
 
         <additionalparam>-Xdoclint:none</additionalparam>
     </properties>

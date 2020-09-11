@@ -1,15 +1,17 @@
 package de.komoot.photon.utils;
 
-import com.google.common.collect.Lists;
-import de.komoot.photon.Constants;
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
+import java.util.Map;
+
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.search.SearchHit;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.util.List;
-import java.util.Map;
+import com.google.common.collect.Lists;
+
+import de.komoot.photon.Constants;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Convert a elasticsearch {@link SearchResponse} into a list of {@link JSONObject}s
@@ -28,10 +30,10 @@ public class ConvertToJson {
     }
 
     public List<JSONObject> convert(SearchResponse searchResponse) {
-        SearchHit[] hits = searchResponse.getHits().getHits();
+    	SearchHit[] hits = searchResponse.getHits().getHits();
         final List<JSONObject> list = Lists.newArrayListWithExpectedSize(hits.length);
         for (SearchHit hit : hits) {
-            final Map<String, Object> source = hit.getSource();
+        	final Map<String, Object> source = hit.getSourceAsMap();
 
             final JSONObject feature = new JSONObject();
             feature.put(Constants.TYPE, Constants.FEATURE);
